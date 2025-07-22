@@ -22,10 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget renderEmpty() {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width, // 가로 넓이 최대로
       decoration: getBoxDecoration(),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
         children: [
           _Logo(
             onTap: onNewVideoPressed, // onTap 매개 변수에 onNewVideoPressed() 함수 입력
@@ -64,14 +64,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget renderVideo() {
     return Center(
-      child: CustomVideoPlayer(
+      child: CustomVideoPlayer( // 동영상 재생기 위젯
         video: video!,
+        onNewVideoPressed: onNewVideoPressed,
       ),
     );
   }
 }
 
-
+// 로고 위젯
 class _Logo extends StatelessWidget{
   final GestureTapCallback onTap; // onTap 함수 선언
   const _Logo({
@@ -88,6 +89,7 @@ class _Logo extends StatelessWidget{
   }
 }
 
+// 앱 제목 위젯
 class _AppName extends StatelessWidget{
   const _AppName({Key?key}) : super(key:key);
 
@@ -100,7 +102,7 @@ class _AppName extends StatelessWidget{
     );
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
       children: [
         Text(
           'VIDEO',
@@ -108,8 +110,8 @@ class _AppName extends StatelessWidget{
         ),
         Text(
           'PLAYER',
-          style: textStyle.copyWith(
-            fontWeight: FontWeight.w700,
+          style: textStyle.copyWith( // 현재 속성 유지한 채로 특정 속성 변경
+            fontWeight: FontWeight.w700, // 글자 굵기 변경
           ),
         )
       ],
